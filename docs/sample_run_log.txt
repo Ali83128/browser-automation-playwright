@@ -1,0 +1,31 @@
+07:02:10  INFO    start    task=bulk_lead_entry rows=25 retries=2 delay=0.40s headless=True
+07:02:11  INFO    login    signed in, session saved for next run
+07:02:12  INFO    row  1   ok    Olivia Brooks          reference=REF-0001
+07:02:13  INFO    row  2   ok    Liam Becker            reference=REF-0002
+07:02:15  INFO    row  3   ok    Emma Schmidt           reference=REF-0003
+07:02:16  INFO    row  4   ok    Noah Schmidt           reference=REF-0004
+07:02:17  INFO    row  5   ok    Ava Fischer            reference=REF-0005
+07:02:19  INFO    row  6   ok    Ethan Fischer          reference=REF-0006
+07:02:20  INFO    row  7   ok    Sophia Becker          reference=REF-0007
+07:02:22  INFO    row  8   ok    Mason Nguyen           reference=REF-0008
+07:02:22  WARNING row  9   retry attempt 1 failed: server answered 503 Service Unavailable after clicking #submit-btn (screenshot bulk_lead_entry_row009_attempt1.png, waiting 2.0s)
+07:02:25  INFO    row  9   ok    Isabella Fischer       reference=REF-0009  (attempt 2)
+07:02:26  INFO    row 10   ok    Lucas Haddad           reference=REF-0010
+07:02:28  INFO    row 11   ok    Mia Walsh              reference=REF-0011
+07:02:29  INFO    row 12   ok    Amir Malik             reference=REF-0012
+07:02:33  INFO    row 13   ok    Zara Patel             reference=REF-0013
+07:02:35  INFO    row 14   ok    Omar Rossi             reference=REF-0014
+07:02:36  INFO    row 15   ok    Hannah Nguyen          reference=REF-0015
+07:02:37  INFO    row 16   ok    Daniel Brooks          reference=REF-0016
+07:02:38  WARNING row 17   retry attempt 1 failed: server answered 503 Service Unavailable after clicking #submit-btn (screenshot bulk_lead_entry_row017_attempt1.png, waiting 2.0s)
+07:02:41  INFO    row 17   ok    Chloe Nguyen           reference=REF-0017  (attempt 2)
+07:02:42  INFO    row 18   ok    Ryan Brooks            reference=REF-0018
+07:02:44  INFO    row 19   ok    Sara Becker            reference=REF-0019
+07:02:45  INFO    row 20   ok    Hamza Ito              reference=REF-0020
+07:02:46  INFO    row 21   ok    Grace Ito              reference=REF-0021
+07:02:48  INFO    row 22   ok    Leo Brooks             reference=REF-0022
+07:02:49  INFO    row 23   ok    Aisha Schmidt          reference=REF-0023
+07:02:51  INFO    row 24   ok    Jack Murphy            reference=REF-0024
+07:02:51  WARNING row 25   retry attempt 1 failed: server answered 503 Service Unavailable after clicking #submit-btn (screenshot bulk_lead_entry_row025_attempt1.png, waiting 2.0s)
+07:02:54  INFO    row 25   ok    Nora Haddad            reference=REF-0025  (attempt 2)
+07:02:54  INFO    done     25/25 ok, 0 failed, 3 needed a retry, 40.7s  -> output/results/bulk_lead_entry.csv

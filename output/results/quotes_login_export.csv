@@ -1,0 +1,2 @@
+row,status,attempts,duration_ms,items_exported,export_file,error
+1,ok,1,5868,100,output/exports/quotes.csv,

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}New lead{% endblock %}
+{% block content %}
+<h1>New lead</h1>
+<p class="sub">Every lead used to be typed in by hand from a spreadsheet.</p>
+<form method="post" action="/form" id="lead-form">
+  <div class="row">
+    <div>
+      <label for="full_name">Full name</label>
+      <input type="text" id="full_name" name="full_name" value="{{ values.get('full_name','') }}">
+      {% if errors.full_name %}<span class="err">{{ errors.full_name }}</span>{% endif %}
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="{{ values.get('email','') }}">
+      {% if errors.email %}<span class="err">{{ errors.email }}</span>{% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <label for="company">Company</label>
+      <input type="text" id="company" name="company" value="{{ values.get('company','') }}">
+    </div>
+    <div>
+      <label for="country">Country</label>
+      <select id="country" name="country">
+        <option value="">Choose...</option>
+        {% for c in countries %}<option value="{{ c }}" {% if values.get('country')==c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+      </select>
+      {% if errors.country %}<span class="err">{{ errors.country }}</span>{% endif %}
+    </div>
+  </div>
+  <label>Plan</label>
+  <div class="radios">
+    {% for p in plans %}<label><input type="radio" name="plan" value="{{ p }}" id="plan-{{ p|lower }}" {% if values.get('plan')==p %}checked{% endif %}> {{ p }}</label>{% endfor %}
+  </div>
+  {% if errors.plan %}<span class="err">{{ errors.plan }}</span>{% endif %}
+  <label for="message">Notes</label>
+  <textarea id="message" name="message">{{ values.get('message','') }}</textarea>
+  <label class="check"><input type="checkbox" id="newsletter" name="newsletter"> Subscribe to newsletter</label>
+  <br><button type="submit" id="submit-btn">Save lead</button>
+</form>
+{% endblock %}

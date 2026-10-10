@@ -1,0 +1,34 @@
+# Task (b): type 25 leads from a CSV into a login-protected web form, one confirmed submission per row.
+# Start the practice site first:  python -m mock_site   (http://127.0.0.1:5055, login demo / demo123)
+name: bulk_lead_entry
+base_url: http://127.0.0.1:5055
+data: data/leads.csv
+storage_state: output/state/mock_site.json
+retries: 2
+rate_limit_seconds: 0.4
+timeout_ms: 10000
+
+login:
+  check_url: /form
+  logged_in_selector: '#logout'
+  steps:
+    - goto: /login
+    - fill: { selector: '#username', value: '{{env.MOCK_USER|demo}}' }
+    - fill: { selector: '#password', value: '{{env.MOCK_PASSWORD|demo123}}' }
+    - click: '#login-btn'
+
+steps:
+  - goto: /form
+  - wait_for: '#lead-form'
+  - fill: { selector: '#full_name', value: '{{row.full_name}}' }
+  - fill: { selector: '#email', value: '{{row.email}}' }
+  - fill: { selector: '#company', value: '{{row.company}}' }
+  - select: { selector: '#country', value: '{{row.country}}' }
+  - click: 'input[name=plan][value="{{row.plan}}"]'
+  - fill: { selector: '#message', value: '{{row.message}}' }
+  - check: { selector: '#newsletter', if: '{{row.newsletter}}' }
+  - click: '#submit-btn'
+  - expect_text: { selector: '#confirmation', contains: '{{row.full_name}}' }
+  - extract: { name: reference, selector: '#reference' }
+
+output: output/results/bulk_lead_entry.csv

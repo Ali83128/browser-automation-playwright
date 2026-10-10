@@ -1,0 +1,2 @@
+Sample upload file for the the-internet.herokuapp.com upload page.
+Part of the browser-automation-playwright demo.

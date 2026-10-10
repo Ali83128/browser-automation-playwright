@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Submissions{% endblock %}
+{% block content %}
+<h1>Submissions</h1>
+<p class="sub">{{ rows|length }} leads saved</p>
+<table id="submissions">
+  <thead><tr><th>Ref</th><th>Name</th><th>Email</th><th>Company</th><th>Country</th><th>Plan</th></tr></thead>
+  <tbody>
+  {% for r in rows %}<tr><td>{{ r.reference }}</td><td>{{ r.full_name }}</td><td>{{ r.email }}</td><td>{{ r.company }}</td><td>{{ r.country }}</td><td>{{ r.plan }}</td></tr>{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

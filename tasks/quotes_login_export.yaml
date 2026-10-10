@@ -1,0 +1,33 @@
+# Task (a): sign in to a practice site and export every record behind the login to CSV + JSON.
+name: quotes_login_export
+base_url: https://quotes.toscrape.com
+storage_state: output/state/quotes.json   # saved session, reused on the next run
+retries: 2
+rate_limit_seconds: 1.0
+timeout_ms: 20000
+
+login:
+  check_url: /
+  logged_in_selector: 'a[href="/logout"]'
+  steps:
+    - goto: /login
+    - fill: { selector: '#username', value: '{{env.QUOTES_USER|demo}}' }
+    - fill: { selector: '#password', value: '{{env.QUOTES_PASSWORD|demo}}' }
+    - click: 'input[type=submit]'
+
+steps:
+  - goto: /
+  - expect_text: { selector: 'a[href="/logout"]', contains: 'Logout' }
+  - extract_all:
+      item: div.quote
+      fields:
+        quote: span.text
+        author: small.author
+        author_url: { selector: 'a[href^="/author/"]', attr: href }
+        tags: { selector: 'a.tag', all: true }
+      next: li.next a
+      max_pages: 20
+      save: output/exports/quotes
+  - screenshot: output/screens/quotes_last_page.png
+
+output: output/results/quotes_login_export.csv

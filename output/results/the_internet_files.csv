@@ -1,0 +1,2 @@
+row,status,attempts,duration_ms,downloaded_file,downloaded_bytes,uploaded_as,dynamic_text,error
+1,ok,1,9411,up.txt,17,upload_sample.txt,Hello World!,

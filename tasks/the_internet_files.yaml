@@ -1,0 +1,31 @@
+# Task (c): file download + upload, dynamic content and form controls on the-internet.herokuapp.com
+# (a public site built for automation practice).
+name: the_internet_files
+base_url: https://the-internet.herokuapp.com
+retries: 2
+rate_limit_seconds: 1.0
+timeout_ms: 20000
+
+steps:
+  # download the first .txt file listed on the download page
+  - goto: /download
+  - download: { click: '#content a[href$=".txt"]', save_dir: output/downloads }
+  # upload a file and confirm the server received it
+  - goto: /upload
+  - upload: { selector: '#file-upload', file: data/upload_sample.txt }
+  - click: '#file-submit'
+  - expect_text: { selector: 'h3', contains: 'File Uploaded!' }
+  - extract: { name: uploaded_as, selector: '#uploaded-files' }
+  # content that only appears after a delay
+  - goto: /dynamic_loading/2
+  - click: '#start button'
+  - expect_text: { selector: '#finish h4', contains: 'Hello World!' }
+  - extract: { name: dynamic_text, selector: '#finish h4' }
+  # checkbox + dropdown
+  - goto: /checkboxes
+  - check: '#checkboxes input >> nth=0'
+  - goto: /dropdown
+  - select: { selector: '#dropdown', value: 'Option 2' }
+  - screenshot: output/screens/the_internet_dropdown.png
+
+output: output/results/the_internet_files.csv

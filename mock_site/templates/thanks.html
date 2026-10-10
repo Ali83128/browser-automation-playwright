@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Saved{% endblock %}
+{% block content %}
+<div class="ok" id="confirmation" hidden>
+  <h1>Lead saved</h1>
+  <p>Thanks, <span id="lead-name">{{ name }}</span>. Reference <b id="reference">{{ ref }}</b>.</p>
+</div>
+<p id="saving">Saving...</p>
+<script>
+  // The confirmation appears after a short delay, like many real back-office apps.
+  setTimeout(function () {
+    document.getElementById('saving').remove();
+    document.getElementById('confirmation').hidden = false;
+  }, 350);
+</script>
+{% endblock %}
